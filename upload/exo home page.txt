@@ -1,0 +1,1991 @@
+/index.html for Exo Enterprise home page:
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exo Enterprise | Building Self-Running Enterprises</title>
+    <meta name="description"
+        content="We install complete AI-powered departments, run them until they're flawless, then transfer ownership to you. 90-day operational sovereignty.">
+    <meta property="og:title" content="Exo Enterprise | Building Self-Running Enterprises">
+    <meta property="og:description"
+        content="We install complete AI-powered departments, run them until they're flawless, then transfer ownership to you.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/favicon.png">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+
+    <!-- Spline Preconnect for faster loading -->
+    <link rel="preconnect" href="https://my.spline.design">
+    <link rel="dns-prefetch" href="https://my.spline.design">
+
+    <!-- PostHog Analytics -->
+    <script>
+        !function (t, e) { var o, n, p, r; e.__SV || (window.posthog = e, e._i = [], e.init = function (i, s, a) { function g(t, e) { var o = e.split("."); 2 == o.length && (t = t[o[0]], e = o[1]), t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } } (p = t.createElement("script")).type = "text/javascript", p.async = !0, p.src = s.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") + "/static/array.js", (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r); var u = e; for (void 0 !== a ? u = e[a] = [] : a = "posthog", u.people = u.people || [], u.toString = function (t) { var e = "posthog"; return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e }, u.people.toString = function () { return u.toString(1) + ".people (stub)" }, o = "init capture register register_once register_for_session unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group identify setPersonProperties setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags resetGroups onFeatureFlags addFeatureFlagsHandler onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep".split(" "), n = 0; n < o.length; n++)g(u, o[n]); e._i.push([i, s, a]) }, e.__SV = 1) }(document, window.posthog || []);
+        posthog.init('phc_N1Clw6iwKeyIqhNrxd1cejjCuvKXPtW17bn9h6ZUw9b', {
+            api_host: 'https://us.i.posthog.com',
+            defaults: '2025-11-30'
+        })
+    </script>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <!-- Fonts: Geist (Sans) and Playfair (Serif Accents) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&amp;family=Geist:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- GSAP for Scroll Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* Base Styles */
+        :root {
+            --font-sans: 'Urbanist', 'Geist', 'Inter', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: #050505;
+            color: #e5e5e5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography Utilities */
+        .font-serif {
+            font-family: var(--font-serif);
+        }
+
+        .tracking-tighter-custom {
+            letter-spacing: -0.04em;
+        }
+
+        /* Spline Container */
+        .spline-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* Hide scrollbar for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Protected Images — prevent save/drag/right-click */
+        .img-protected {
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-drag: none;
+            -webkit-touch-callout: none;
+        }
+
+        /* Glass Cards */
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Subtle Fade In Animation */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-up {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+
+        /* Spline Loader Animations */
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.6;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Spotlight Card */
+        .card-spotlight {
+            position: relative;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            /* Matches glass-panel border */
+            background-color: #111;
+            /* User requested color */
+            overflow: hidden;
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+            --spotlight-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .card-spotlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 80%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .card-spotlight:hover::before,
+        .card-spotlight:focus-within::before {
+            opacity: 0.6;
+        }
+
+        /* Stacked Cards Styles */
+        .stacked-cards-container {
+            position: relative;
+            background: #050505;
+            /* Match body bg */
+        }
+
+        .sticky-card-wrapper {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .card-content {
+            position: absolute;
+            width: 90%;
+            /* Default mobile width */
+            max-width: 400px;
+            /* Max width from example */
+            height: 500px;
+            border-radius: 45px;
+            transform-origin: center top;
+            will-change: transform;
+        }
+
+        /* Custom Card Gradient Styles from Example 1 */
+        .exo-card-bg {
+            background-image: linear-gradient(to bottom right, #080509, #1a171c, #080509);
+            background-clip: padding-box;
+            border: 2px solid transparent;
+            border-radius: 45px;
+            padding: 2.5rem;
+            /* p-10 */
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .exo-card-border-gradient {
+            position: absolute;
+            inset: -2px;
+            /* absolute -inset-px */
+            border-radius: 45px;
+            z-index: -10;
+            background: linear-gradient(71deg, #110e0e, var(--card-color, #afa220), #110e0e);
+        }
+
+        @media (min-width: 768px) {
+            .card-content {
+                width: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-neutral-950 text-neutral-200 antialiased selection:bg-indigo-500/30 selection:text-white">
+
+    <!-- SPLINE LOADING PLACEHOLDER -->
+    <div id="spline-loader"
+        class="fixed inset-0 -z-10 bg-neutral-950 flex items-center justify-center transition-opacity duration-1000"
+        style="z-index: -9;">
+        <div class="text-center relative z-10">
+            <img src="./logos/LOGO%20MARK.png" alt="Loading..." class="w-16 h-16 mx-auto mb-4 opacity-60"
+                style="animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;">
+            <div class="w-8 h-8 border-2 border-white/20 border-t-emerald-500 rounded-full mx-auto"
+                style="animation: spin 1s linear infinite;"></div>
+        </div>
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-neutral-900/40 via-transparent to-neutral-950 pointer-events-none">
+        </div>
+    </div>
+
+    <!-- SPLINE BACKGROUND (Brand Core) -->
+    <div class="spline-bg">
+        <div class="absolute inset-0 bg-neutral-950/40 z-10"></div> <!-- Overlay for contrast -->
+        <div class="absolute inset-0 bg-gradient-to-b from-neutral-850/20 via-transparent to-neutral-850 z-10"></div>
+        <iframe id="spline-iframe" src="https://my.spline.design/animatedshapeblend-1gCFHvLukjcmK6imbIAFLY2d/"
+            frameborder="0" width="100%" height="100%" loading="lazy" style="will-change: auto;"></iframe>
+    </div>
+
+    <!-- Announcement Bar -->
+    <div
+        class="sticky top-0 z-[60] w-full bg-emerald-950/90 backdrop-blur-md border-b border-emerald-500/20 flex items-center justify-center px-4 py-2.5 transition-all">
+        <a href="x-scale.html"
+            class="flex items-center gap-2 text-sm font-medium text-emerald-100 hover:text-white transition-colors group">
+            <span class="font-['Urbanist'] tracking-wide"><span
+                    class="inline-flex items-center justify-center bg-white text-emerald-950 text-[10px] font-bold px-2 py-0.5 rounded-full mr-2 leading-none">NEW</span>Slots
+                Open This Month: <strong>Transform Your Business</strong></span>
+            <iconify-icon icon="solar:arrow-right-linear" width="16"
+                class="text-emerald-400 group-hover:translate-x-0.5 transition-transform"></iconify-icon>
+        </a>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="relative w-full z-50 border-b border-white/5 bg-neutral-950/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div
+                    class="w-8 h-8 rounded border border-white/20 flex items-center justify-center bg-white/5 group-hover:bg-white/10 transition-colors overflow-hidden">
+                    <img src="./logos/LOGO%20MARK.png" alt="Exo Logo" class="w-full h-full object-contain">
+                </div>
+                <span class="text-md font-medium tracking-tight text-white/90">Exo Enterprise</span>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center gap-8 text-xs font-medium tracking-wide uppercase text-neutral-400">
+                <a href="#problem" class="hover:text-white transition-colors">The Chaos</a>
+                <a href="value.html" class="hover:text-white transition-colors">Guides</a>
+                <a href="flow.html" class="hover:text-white transition-colors">Flow OS</a>
+                <a href="#how-it-works" class="hover:text-white transition-colors">Process</a>
+                <a href="#departments" class="hover:text-white transition-colors">Departments</a>
+                <a href="firm.html" class="hover:text-white transition-colors">About the Firm</a>
+                <a href="/careers.html" class="hover:text-white transition-colors">Careers</a>
+            </div>
+
+            <!-- CTA -->
+            <a href="value.html"
+                class="hidden md:flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-all text-xs font-medium text-white">
+                <span class="">FREE GIFTS IN VAULT</span>
+                <iconify-icon icon="solar:arrow-right-linear" width="16" class=""></iconify-icon>
+            </a>
+
+            <!-- Mobile Menu Icon -->
+            <button id="mobile-menu-toggle" class="md:hidden text-white z-[100] relative" aria-label="Toggle menu">
+                <iconify-icon id="menu-icon" icon="solar:hamburger-menu-linear" width="24"></iconify-icon>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU (Full Screen) -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-neutral-950/95 backdrop-blur-xl z-[99] hidden flex flex-col items-center justify-center p-6">
+        <!-- Close Button -->
+        <button id="mobile-menu-close"
+            class="absolute top-6 right-6 text-white/50 hover:text-white transition-colors z-50">
+            <iconify-icon icon="solar:close-circle-linear" width="32"></iconify-icon>
+        </button>
+
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-blue-500/10 pointer-events-none">
+        </div>
+        <div class="absolute inset-0 backdrop-filter backdrop-blur-[1px] pointer-events-none"
+            style="background: radial-gradient(circle at 50% 50%, rgba(16,185,129,0.1) 0%, transparent 50%)"></div>
+
+        <div class="relative z-10 text-center space-y-8 w-full">
+            <nav class="flex flex-col gap-6 items-center">
+                <a href="#problem" class="text-2xl font-light text-white hover:text-emerald-400 transition-colors">The
+                    Chaos</a>
+                <a href="flow.html" class="text-2xl font-light text-white hover:text-emerald-400 transition-colors">Flow
+                    OS</a>
+                <a href="#how-it-works"
+                    class="text-2xl font-light text-white hover:text-emerald-400 transition-colors">Process</a>
+                <a href="value.html"
+                    class="text-2xl font-light text-white hover:text-emerald-400 transition-colors">Guides</a>
+                <a href="#departments"
+                    class="text-2xl font-light text-white hover:text-emerald-400 transition-colors">Departments</a>
+                <a href="firm.html"
+                    class="text-2xl font-light text-white hover:text-emerald-400 transition-colors">About the Firm</a>
+                <a href="#careers"
+                    class="text-2xl font-light text-white hover:text-emerald-400 transition-colors">Careers</a>
+            </nav>
+
+            <div class="border-t border-white/10 pt-8">
+                <a href="x-scale.html"
+                    class="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-lg font-semibold hover:bg-neutral-200 transition-colors">
+                    8 Spots Open This Month
+                    <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <header class="min-h-[90vh] flex flex-col pt-12 pr-6 pb-12 pl-6 relative items-center justify-center">
+        <div class="max-w-4xl mx-auto text-center z-20 space-y-8 animate-fade-up">
+
+            <!-- Tagline -->
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mx-auto">
+                <span class="relative flex h-2 w-2">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span class="text-[10px] uppercase font-medium text-white/90 tracking-widest">Be Extraordinary</span>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="flex justify-center animate-bounce opacity-80">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 13l5 5 5-5M7 6l5 5 5-5"></path>
+                </svg>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-light tracking-tighter-custom text-white leading-[0.95]">
+                Your <span id="hero-department-text" class="font-medium inline-block pb-1 text-emerald-400">Sales</span>
+                Department Is Chaos. <br>
+                We Build The AI System—Then Hand You The Keys.
+            </h1>
+
+            <!-- Sub-headline -->
+            <p style="text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 1px 1px rgba(0,0,0,0.75);"
+                class="text-lg md:text-xl text-white font-['Urbanist'] font-normal max-w-2xl mx-auto leading-relaxed tracking-wide">
+                We capture your chaos, build the AI system that runs it, and train your team to own it. 90 days.
+                <span class="text-emerald-300">55% efficiency gains—guaranteed or we don't stop.</span>
+            </p>
+
+            <!-- CTAs -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 w-full max-w-md mx-auto">
+                <a href="x-scale.html" id="hero-cta-btn"
+                    class="w-full px-8 py-4 bg-white text-black rounded-lg text-sm font-bold tracking-tight hover:bg-neutral-200 transition-colors flex items-center justify-center shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.5)] duration-300">
+                    BUILD MY SYSTEM
+                </a>
+            </div>
+
+        </div>
+    </header>
+    <!-- PROBLEM SECTION (The Tension) -->
+    <section class="min-h-screen bg-neutral-950 border-white/5 border-t pt-24 pb-24 relative" id="problem">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Social Proof (Moved from Hero) -->
+            <div class="mb-24 text-center">
+                <p class="text-[10px] uppercase tracking-[0.2em] text-neutral-500 mb-8 font-['Urbanist'] font-medium">
+                    Our team is recruited from</p>
+                <div class="flex flex-wrap md:gap-x-24 gap-x-8 gap-y-8 items-center justify-center">
+                    <!-- Google Logo - Multi-colored wordmark -->
+                    <svg width="130" height="44" viewBox="0 0 130 44" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="h-7 w-auto opacity-70 hover:opacity-100 transition-all duration-300">
+                        <g id="google-logo">
+                            <path
+                                d="M58.0779 22.3848C58.0779 26.5489 54.8203 29.6174 50.8225 29.6174C46.8247 29.6174 43.567 26.5489 43.567 22.3848C43.567 18.1913 46.8247 15.1522 50.8225 15.1522C54.8203 15.1522 58.0779 18.1913 58.0779 22.3848ZM54.9018 22.3848C54.9018 19.7826 53.0138 18.0022 50.8225 18.0022C48.6312 18.0022 46.7431 19.7826 46.7431 22.3848C46.7431 24.9609 48.6312 26.7674 50.8225 26.7674C53.0138 26.7674 54.9018 24.9576 54.9018 22.3848Z"
+                                fill="#EA4335" class="group-hover:fill-[#EA4335]" />
+                            <path
+                                d="M73.7301 22.3848C73.7301 26.5489 70.4725 29.6174 66.4747 29.6174C62.4768 29.6174 59.2192 26.5489 59.2192 22.3848C59.2192 18.1946 62.4768 15.1522 66.4747 15.1522C70.4725 15.1522 73.7301 18.1913 73.7301 22.3848ZM70.554 22.3848C70.554 19.7826 68.666 18.0022 66.4747 18.0022C64.2834 18.0022 62.3953 19.7826 62.3953 22.3848C62.3953 24.9609 64.2834 26.7674 66.4747 26.7674C68.666 26.7674 70.554 24.9576 70.554 22.3848Z"
+                                fill="#FBBC05" class="group-hover:fill-[#FBBC05]" />
+                            <path
+                                d="M88.7301 15.5891V28.5739C88.7301 33.9152 85.5801 36.0967 81.8562 36.0967C78.3507 36.0967 76.241 33.7522 75.4453 31.8348L78.2105 30.6837C78.7029 31.8609 79.9094 33.25 81.8529 33.25C84.2366 33.25 85.7138 31.7793 85.7138 29.0109V27.9706H85.6029C84.892 28.8478 83.5225 29.6141 81.7942 29.6141C78.1779 29.6141 74.8649 26.4641 74.8649 22.4109C74.8649 18.3282 78.1779 15.1522 81.7942 15.1522C83.5192 15.1522 84.8888 15.9185 85.6029 16.7696H85.7138V15.5924H88.7301V15.5891ZM85.9388 22.4109C85.9388 19.8641 84.2399 18.0022 82.0779 18.0022C79.8866 18.0022 78.0507 19.8641 78.0507 22.4109C78.0507 24.9315 79.8866 26.7674 82.0779 26.7674C84.2399 26.7674 85.9388 24.9315 85.9388 22.4109Z"
+                                fill="#4285F4" class="group-hover:fill-[#4285F4]" />
+                            <path d="M93.7029 7.97824V29.1739H90.6051V7.97824H93.7029Z" fill="#34A853"
+                                class="group-hover:fill-[#34A853]" />
+                            <path
+                                d="M105.775 24.7652L108.24 26.4087C107.444 27.5859 105.527 29.6141 102.214 29.6141C98.1051 29.6141 95.0366 26.438 95.0366 22.3815C95.0366 18.0804 98.1312 15.1489 101.858 15.1489C105.612 15.1489 107.447 18.1359 108.047 19.75L108.377 20.5717L98.7084 24.5761C99.4486 26.0272 100.6 26.7674 102.214 26.7674C103.831 26.7674 104.953 25.9717 105.775 24.7652ZM98.1866 22.163L104.65 19.4793C104.294 18.5761 103.225 17.9467 101.966 17.9467C100.352 17.9467 98.1051 19.3717 98.1866 22.163Z"
+                                fill="#EA4335" class="group-hover:fill-[#EA4335]" />
+                            <path
+                                d="M31.841 20.5033V17.4348H42.1812C42.2823 17.9696 42.3344 18.6022 42.3344 19.287C42.3344 21.5891 41.7051 24.4359 39.6768 26.4641C37.704 28.5185 35.1834 29.6141 31.8442 29.6141C25.6551 29.6141 20.4507 24.5728 20.4507 18.3837C20.4507 12.1946 25.6551 7.15326 31.8442 7.15326C35.2681 7.15326 37.7073 8.49674 39.5399 10.2478L37.3747 12.413C36.0605 11.1804 34.2801 10.2217 31.841 10.2217C27.3214 10.2217 23.7866 13.8641 23.7866 18.3837C23.7866 22.9033 27.3214 26.5457 31.841 26.5457C34.7725 26.5457 36.4421 25.3685 37.5116 24.2989C38.379 23.4315 38.9497 22.1924 39.1747 20.5L31.841 20.5033Z"
+                                fill="#4285F4" class="group-hover:fill-[#4285F4]" />
+                        </g>
+                    </svg>
+
+                    <!-- Airbnb Logo - Bélo + wordmark -->
+                    <svg width="120" height="44" viewBox="0 0 120 44" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="h-7 w-auto text-neutral-400 hover:text-[#FF5A5F] transition-colors duration-300">
+                        <!-- Bélo symbol (outline only) -->
+                        <path
+                            d="M22.584 8C20.8 10.5 19.5 12.8 19.2 14.5C19.1 15.1 19.1 15.6 19.2 16.1C19.3 16.5 19.5 16.9 19.7 17.2C20.3 18 21.3 18.5 22.6 18.5C23.8 18.5 24.9 18 25.5 17.2C25.7 16.9 25.9 16.5 26 16.1C26.1 15.6 26.1 15.1 25.9 14.5C25.5 12.8 24.3 10.5 22.584 8ZM32.7 31.3C34.3 30.7 35.5 29.3 35.7 27.6C35.8 26.8 35.7 26 35.5 25.2C35.4 24.9 35.3 24.7 35.2 24.4C35.1 24.3 35.1 24.2 35 24.1C34.9 23.8 34.8 23.6 34.7 23.3C34.6 23.1 34.5 22.8 34.3 22.5V22.5C32.1 17.7 29.6 12.8 27.1 8L27 7.8C26.9 7.6 26.8 7.4 26.6 7.1C26.5 6.9 26.4 6.6 26.2 6.4C26 5.9 25.7 5.4 25.3 5C24.6 4.3 23.7 3.9 22.6 3.9C21.6 3.9 20.7 4.3 20 5C19.6 5.4 19.4 5.9 19.1 6.4C19 6.6 18.9 6.9 18.7 7.1C18.6 7.4 18.5 7.6 18.3 7.8L18.2 8C15.7 12.8 13.3 17.7 11 22.5L11 22.5C10.7 23.1 10.4 23.6 10.2 24.1C10.2 24.2 10.1 24.3 10.1 24.4C10 24.7 9.9 24.9 9.8 25.2C9.5 26 9.4 26.8 9.5 27.6C9.7 29.3 10.9 30.7 12.5 31.3C13.2 31.6 14.1 31.7 15 31.6C15.8 31.5 16.6 31.3 17.5 30.9C18.7 30.2 19.9 29.2 21.2 27.7C19.1 25.1 17.7 23 17.3 21.1C17 20.2 17 19.3 17.1 18.5C17.2 17.7 17.5 17 18 16.4C19 15 20.7 14.1 22.6 14.1C24.5 14.1 26.2 15 27.3 16.4C27.7 17 28 17.7 28.1 18.5C28.2 19.3 28.2 20.2 28 21.1C27.5 23 26.2 25.1 24 27.7C25.4 29.2 26.6 30.2 27.7 30.9C28.6 31.3 29.4 31.5 30.2 31.6C31.1 31.7 32 31.6 32.7 31.3Z"
+                            stroke="currentColor" stroke-width="1.8" fill="none" />
+                        <!-- Wordmark: airbnb -->
+                        <text x="42" y="26" font-family="system-ui, -apple-system, 'Circular', sans-serif"
+                            font-size="16" font-weight="500" fill="currentColor" letter-spacing="-0.02em">airbnb</text>
+                    </svg>
+
+                    <!-- Square Logo - Icon + wordmark -->
+                    <svg width="110" height="44" viewBox="0 0 110 44" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="h-7 w-auto text-neutral-400 hover:text-white transition-colors duration-300">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M29.4356 9.52021H12.7057C10.4055 9.52021 8.52264 11.3923 8.52264 13.6807V30.3207C8.52264 32.608 10.4055 34.4798 12.7057 34.4798H29.4356C31.7358 34.4798 33.6187 32.608 33.6187 30.3207V13.6807C33.6187 11.3923 31.7358 9.52021 29.4356 9.52021ZM29.055 28.62C29.055 29.347 28.4568 29.9407 27.7251 29.9407H14.4154C13.6838 29.9407 13.0848 29.347 13.0848 28.62V15.3821C13.0848 14.6547 13.6838 14.0592 14.4154 14.0592H27.7251C28.4568 14.0592 29.055 14.6547 29.055 15.3821V28.62ZM23.7339 25.4039C24.1512 25.4039 24.4936 25.0645 24.4936 24.6472V19.3532C24.4936 18.9373 24.1512 18.5973 23.7339 18.5973H18.4113C17.9924 18.5973 17.6516 18.9373 17.6516 19.3532V24.6472C17.6516 25.0645 17.9924 25.4039 18.4113 25.4039H23.7339Z"
+                            fill="currentColor" />
+                        <text x="42" y="29" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+                            font-size="18" font-weight="600" fill="currentColor">Square</text>
+                    </svg>
+
+                    <!-- Webflow Logo - Just the W mark -->
+                    <svg width="40" height="44" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="h-7 w-auto text-neutral-400 hover:text-[#146EF5] transition-colors duration-300">
+                        <path
+                            d="M32.0673 12.076L21.835 32.079H12.224L16.5062 23.7889H16.3141C12.7813 28.3749 7.51034 31.3939 0 32.079V23.9037C0 23.9037 4.80454 23.6199 7.629 20.6504H0V12.0762H8.57418V19.1283L8.76662 19.1275L12.2703 12.0762H18.7548V19.0836L18.9472 19.0833L22.5823 12.076H32.0673Z"
+                            fill="currentColor" />
+                    </svg>
+                </div>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-6">
+                    <h2 class="text-3xl md:text-5xl font-light tracking-tight text-white leading-tight">
+                        Your Operations Are <br>
+                        <span class="font-serif italic text-neutral-500">Chaos.</span>
+                    </h2>
+                    <p class="text-lg leading-relaxed"
+                        style="text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 1px 1px rgba(0,0,0,0.75);">
+                        <span class="text-red-400">$10K/month in tools that don't talk to each other.</span>
+                        <span class="text-red-400/80">15 hours a week on manual updates and duplicate data entry.</span>
+                        <span class="text-red-400/60">Deals slipping through cracks because your pipeline lives in four
+                            spreadsheets.</span>
+                        <span class="text-neutral-400">When key people leave, their knowledge walks out the door.</span>
+                        <span class="text-neutral-500">Every new hire takes 3 months to get up to speed.</span>
+                        <span class="text-neutral-500">You hired consultants — they left a 60-page deck.</span>
+                        <span class="text-neutral-500/80">You bought software — 10 months in "implementation."</span>
+                    </p>
+                    <p class="text-white text-lg leading-relaxed border-l-2 border-indigo-500 pl-6"
+                        style="text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 1px 1px rgba(0,0,0,0.75);">
+                        The result? Operational chaos costing you $5K–$15K+/month <span class="text-red-400">and more in
+                            wasted time.</span> You don't need another tool. You need a Department Operating System that
+                        captures <span class="font-serif italic font-bold text-emerald-400">how</span> <span
+                            class="font-bold">your</span> business
+                        actually works.
+                    </p>
+                </div>
+
+                <!-- Graphic: Chaos vs Order -->
+                <!-- Graphic: Chaos vs Order (Spotlight Card) -->
+                <div class="card-spotlight w-full flex items-center justify-center p-8">
+                    <div class="grid grid-cols-[0.8fr_1.2fr] gap-8 w-full max-w-md relative z-10">
+                        <!-- Current State -->
+                        <div class="space-y-4 text-center opacity-40 flex flex-col justify-center">
+                            <iconify-icon icon="solar:danger-triangle-linear" width="48"
+                                class="text-red-400 mx-auto"></iconify-icon>
+                            <h3 class="text-sm font-semibold uppercase tracking-widest text-red-400">Current State</h3>
+                            <div class="text-xs text-neutral-400 space-y-2 font-mono">
+                                <p>Disparate Tools</p>
+                                <p>Siloed Data</p>
+                                <p>Manual Handoffs</p>
+                                <p>Fragmented Stack</p>
+                            </div>
+                        </div>
+
+                        <!-- Exo State -->
+                        <div
+                            class="space-y-4 text-center relative border-l border-white/10 pl-8 flex flex-col items-center justify-center">
+                            <iconify-icon icon="solar:check-circle-linear" width="48"
+                                class="text-emerald-400 mx-auto"></iconify-icon>
+                            <h3 class="text-sm font-semibold uppercase tracking-widest text-emerald-400"
+                                style="text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 1px 1px rgba(0,0,0,0.75);">Exo State
+                            </h3>
+
+                            <div class="text-xs text-neutral-300 space-y-4 font-mono w-full">
+                                <!-- Core System -->
+                                <div class="flex flex-col items-center">
+                                    <iconify-icon icon="solar:box-minimalistic-bold" class="text-emerald-400 mb-1"
+                                        width="20"></iconify-icon>
+                                    <p class="font-bold text-white mb-0.5"
+                                        style="text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 1px 1px rgba(0,0,0,0.75);">
+                                        Flow OS & Custom Roadmap</p>
+                                    <p class="text-[10px] text-neutral-200"
+                                        style="text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 1px 1px rgba(0,0,0,0.75);">The
+                                        Core System</p>
+                                </div>
+
+                                <!-- Bonuses Section -->
+                                <div class="pt-2 border-t border-white/5 w-full">
+                                    <p class="text-[10px] font-bold text-emerald-500/80 uppercase tracking-widest mb-3"
+                                        style="text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 1px 1px rgba(0,0,0,0.75);">
+                                        Bonuses</p>
+
+                                    <div class="space-y-3">
+                                        <div class="flex flex-col items-center">
+                                            <iconify-icon icon="solar:star-bold" class="text-emerald-400 mb-1"
+                                                width="16"></iconify-icon>
+                                            <p class="text-white font-medium"
+                                                style="text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 1px 1px rgba(0,0,0,0.75);">
+                                                Exo Concierge</p>
+                                            <p class="text-[10px] text-neutral-200"
+                                                style="text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 1px 1px rgba(0,0,0,0.75);">
+                                                On Standby</p>
+                                        </div>
+                                        <div class="flex flex-col items-center">
+                                            <iconify-icon icon="solar:star-bold" class="text-emerald-400 mb-1"
+                                                width="16"></iconify-icon>
+                                            <p class="text-white font-medium"
+                                                style="text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 1px 1px rgba(0,0,0,0.75);">
+                                                AI Knowledge Base</p>
+                                            <p class="text-[10px] text-neutral-200"
+                                                style="text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 1px 1px rgba(0,0,0,0.75);">
+                                                Always On-Going</p>
+                                        </div>
+                                        <div class="flex flex-col items-center">
+                                            <iconify-icon icon="solar:star-bold" class="text-emerald-400 mb-1"
+                                                width="16"></iconify-icon>
+                                            <p class="text-white font-medium"
+                                                style="text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 1px 1px rgba(0,0,0,0.75);">
+                                                AI-Specific Add-Ons</p>
+                                            <p class="text-[10px] text-neutral-200"
+                                                style="text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 1px 1px rgba(0,0,0,0.75);">
+                                                Custom Extensions</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SOLUTION SECTION (Merged with Scroll Demo) -->
+    <section id="solution" class="bg-white relative">
+        <div id="merged-scroll-trigger" class="py-10 md:py-20">
+            <div class="h-[90rem] md:h-[75rem] flex items-center justify-center relative p-2 md:p-20">
+                <div class="py-10 md:py-20 w-full relative" style="perspective: 1000px;">
+
+                    <!-- Header Component (Was Solution Text) -->
+                    <div id="scroll-demo-header" class="max-w-4xl mx-auto text-center mb-10 z-0 relative transform">
+                        <span class="uppercase block text-xs text-indigo-500 tracking-widest font-mono mb-4">THE EXO
+                            METHOD</span>
+                        <h2 class="text-4xl md:text-7xl font-light text-black tracking-tight mb-4">
+                            Enter <span class="font-serif italic text-neutral-800">Flow OS</span>
+                        </h2>
+                        <span
+                            class="block text-sm md:text-base font-extrabold uppercase tracking-wide text-neutral-800 mb-6"
+                            style="font-family: 'Urbanist', sans-serif;">We Don't Just Advise. We Implement.</span>
+                        <p class="text-lg md:text-xl text-neutral-600 font-light max-w-2xl mx-auto">
+                            Most consultants leave you with recommendations. We leave you with a working Department
+                            Operating System — built, tested, and transferred to your team.
+                        </p>
+                    </div>
+
+                    <!-- Card Component (Tablet Frame) -->
+                    <div id="scroll-demo-card"
+                        class="max-w-6xl -mt-10 md:-mt-24 mx-auto h-[30rem] md:h-[45rem] w-full border-[8px] border-gray-200 p-2 md:p-6 bg-white rounded-[40px] shadow-[0_30px_60px_rgba(0,0,0,0.12)] z-20 relative">
+                        <!-- Screen Content -->
+                        <div
+                            class="absolute inset-2 md:inset-6 overflow-hidden rounded-[24px] bg-gray-50 border border-gray-100">
+                            <!-- Image/Demo Placeholder -->
+                            <img src="./assets/new-dashboard.jpeg" alt="Exo Dashboard Demo"
+                                class="object-cover object-left-top w-full h-full block" draggable="false" />
+                        </div>
+                    </div>
+
+                    <!-- Pillars Grid (Map / Build / Transfer) -->
+                    <div id="scroll-demo-features" class="max-w-6xl mx-auto mt-10 z-30 relative">
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <!-- Pillar 1: Map -->
+                            <div
+                                class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all group">
+                                <div
+                                    class="w-12 h-12 bg-sky-50 rounded-lg flex items-center justify-center mb-4 group-hover:bg-sky-100 transition-colors">
+                                    <iconify-icon icon="solar:map-linear" class="text-sky-600 text-2xl"></iconify-icon>
+                                </div>
+                                <span
+                                    class="block text-[10px] font-bold uppercase tracking-widest text-indigo-500 mb-1">Pillar
+                                    1</span>
+                                <h3 class="text-lg text-neutral-900 font-semibold mb-2">Map Your Operations</h3>
+                                <p class="text-neutral-500 text-sm leading-relaxed">
+                                    We document every workflow, data source, and decision point <span
+                                        class="font-semibold text-neutral-700">before</span> touching a single tool.
+                                </p>
+                                <p class="text-xs text-neutral-400 mt-3 pt-3 border-t border-gray-100">
+                                    <span class="font-semibold text-neutral-600">Result:</span> Complete operational
+                                    blueprint — not assumptions.
+                                </p>
+                            </div>
+
+                            <!-- Pillar 2: Build -->
+                            <div
+                                class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all group">
+                                <div
+                                    class="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-100 transition-colors">
+                                    <iconify-icon icon="solar:cpu-bolt-linear"
+                                        class="text-indigo-600 text-2xl"></iconify-icon>
+                                </div>
+                                <span
+                                    class="block text-[10px] font-bold uppercase tracking-widest text-indigo-500 mb-1">Pillar
+                                    2</span>
+                                <h3 class="text-lg text-neutral-900 font-semibold mb-2">Build Your Department OS</h3>
+                                <p class="text-neutral-500 text-sm leading-relaxed">
+                                    We implement Flow OS as your unified operations layer — capturing workflows, logging
+                                    decisions, documenting why things work.
+                                </p>
+                                <p class="text-xs text-neutral-400 mt-3 pt-3 border-t border-gray-100">
+                                    <span class="font-semibold text-neutral-600">Result:</span> Institutional knowledge
+                                    becomes data — not tribal knowledge.
+                                </p>
+                            </div>
+
+                            <!-- Pillar 3: Transfer -->
+                            <div
+                                class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all group">
+                                <div
+                                    class="w-12 h-12 bg-emerald-50 rounded-lg flex items-center justify-center mb-4 group-hover:bg-emerald-100 transition-colors">
+                                    <iconify-icon icon="solar:hand-shake-linear"
+                                        class="text-emerald-600 text-2xl"></iconify-icon>
+                                </div>
+                                <span
+                                    class="block text-[10px] font-bold uppercase tracking-widest text-indigo-500 mb-1">Pillar
+                                    3</span>
+                                <h3 class="text-lg text-neutral-900 font-semibold mb-2">Transfer Ownership</h3>
+                                <p class="text-neutral-500 text-sm leading-relaxed">
+                                    We co-run the department alongside your team for 60–90 days, training them through
+                                    Exo Academy until they own it completely.
+                                </p>
+                                <p class="text-xs text-neutral-400 mt-3 pt-3 border-t border-gray-100">
+                                    <span class="font-semibold text-neutral-600">Result:</span> Full sovereignty. Zero
+                                    dependency.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GSAP Script for Merged Section -->
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const isMobile = window.innerWidth <= 768;
+            const scaleValues = isMobile ? [0.8, 0.9] : [1.1, 1]; // Start slightly larger to feel immersive
+
+            // Mobile-specific y-values to prevent clipping
+            const headerY = isMobile ? { from: 80, to: -50 } : { from: 150, to: -200 };
+            const cardY = isMobile ? { from: 50, to: 0 } : { from: 100, to: -50 };
+            const featuresY = isMobile ? { from: 100, to: 0 } : { from: 200, to: -100 };
+
+            // Header Animation (Emerges from behind)
+            gsap.fromTo("#scroll-demo-header",
+                {
+                    y: headerY.from,
+                    opacity: 0.5
+                },
+                {
+                    y: headerY.to,
+                    opacity: 1,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: "#merged-scroll-trigger",
+                        start: "top bottom",
+                        end: "center center",
+                        scrub: 1
+                    }
+                }
+            );
+
+            // Card Animation (Rotate, Scale, Translate)
+            gsap.fromTo("#scroll-demo-card",
+                {
+                    rotationX: isMobile ? 15 : 25,
+                    scale: scaleValues[0],
+                    y: cardY.from,
+                    boxShadow: "0 0 0px rgba(0,0,0,0)"
+                },
+                {
+                    rotationX: 0,
+                    scale: scaleValues[1],
+                    y: cardY.to,
+                    boxShadow: "0 30px 60px rgba(0,0,0,0.12)",
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: "#merged-scroll-trigger",
+                        start: "top bottom",
+                        end: "bottom bottom",
+                        scrub: 1
+                    }
+                }
+            );
+
+            // Features Grid Animation (Parallax Depth)
+            gsap.fromTo("#scroll-demo-features",
+                {
+                    y: featuresY.from,
+                    opacity: 0
+                },
+                {
+                    y: featuresY.to,
+                    opacity: 1,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: "#merged-scroll-trigger",
+                        start: "top bottom",
+                        end: "bottom bottom",
+                        scrub: 1
+                    }
+                }
+            );
+        });
+    </script>
+
+    <!-- HOW IT WORKS (3-Phase Delivery) -->
+    <section id="how-it-works" class="pt-24 pb-12 bg-neutral-950 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16">
+                <h2 class="md:text-5xl text-3xl font-light text-white tracking-tight mb-6">Exo Builds. We Run. <br>
+                    <span class="text-neutral-500">Then You Own It.</span>
+                </h2>
+                <p class="text-neutral-400 max-w-xl">
+                    The 90-day path to operational sovereignty.
+                </p>
+            </div>
+
+            <!-- 3-Phase Cards Layout -->
+            <div
+                class="grid md:grid-cols-3 gap-0 border border-white/10 rounded-2xl overflow-hidden divide-y md:divide-y-0 md:divide-x divide-white/10 bg-neutral-900/20">
+
+                <!-- Phase 1: Stabilize -->
+                <div class="md:p-10 hover:bg-white/[0.02] transition-colors group pt-8 pr-8 pb-8 pl-8 relative">
+                    <div
+                        class="absolute top-0 left-0 w-full h-1 bg-sky-500 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500">
+                    </div>
+                    <span class="text-xs font-mono text-sky-400 mb-4 block">PHASE 01 // WEEKS 1–4</span>
+                    <h3 class="text-2xl font-serif italic text-white mb-4">Stabilize</h3>
+                    <p class="text-neutral-400 text-[15px] mb-6 leading-relaxed">
+                        We audit your operations, map every workflow, and begin the Flow OS build. Quick wins first —
+                        automated handoffs, unified data layer. We stop the bleeding.
+                    </p>
+                    <div class="space-y-2.5 mb-6">
+                        <div class="flex items-center gap-2.5 text-white text-sm font-medium">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-sky-500"></iconify-icon>
+                            <span>Systems audit &amp; workflow mapping</span>
+                        </div>
+                        <div class="flex items-center gap-2.5 text-white text-sm font-medium">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-sky-500"></iconify-icon>
+                            <span>Flow OS build begins</span>
+                        </div>
+                        <div class="flex items-center gap-2.5 text-white text-sm font-medium">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-sky-500"></iconify-icon>
+                            <span>Quick wins: automated handoffs, unified data</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2.5 pt-4 border-t border-white/5">
+                        <iconify-icon icon="solar:eye-linear" class="text-sky-400 text-base"></iconify-icon>
+                        <span class="text-xs text-neutral-400">Immediate reduction in "where is this?" questions</span>
+                    </div>
+                </div>
+
+                <!-- Phase 2: Operate -->
+                <div class="p-8 md:p-10 hover:bg-white/[0.02] transition-colors relative group">
+                    <div
+                        class="absolute top-0 left-0 w-full h-1 bg-teal-500 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500">
+                    </div>
+                    <span class="text-xs font-mono text-teal-400 mb-4 block">PHASE 02 // WEEKS 5–12</span>
+                    <h3 class="text-2xl font-serif italic text-white mb-4">Operate</h3>
+                    <p class="text-neutral-400 text-[15px] mb-6 leading-relaxed">
+                        We co-manage departments alongside your team. Every decision gets logged as structured data.
+                        Your people learn by doing — through Exo Academy, live and hands-on.
+                    </p>
+                    <div class="space-y-2.5 mb-6">
+                        <div class="flex items-center gap-2.5 text-white text-sm font-medium">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-teal-500"></iconify-icon>
+                            <span>Co-manage departments with your team</span>
+                        </div>
+                        <div class="flex items-center gap-2.5 text-white text-sm font-medium">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-teal-500"></iconify-icon>
+                            <span>Every decision logged as structured data</span>
+                        </div>
+                        <div class="flex items-center gap-2.5 text-white text-sm font-medium">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-teal-500"></iconify-icon>
+                            <span>Team training through Exo Academy</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2.5 pt-4 border-t border-white/5">
+                        <iconify-icon icon="solar:graph-up-linear" class="text-teal-400 text-base"></iconify-icon>
+                        <span class="text-xs text-neutral-400">20–55% efficiency gains, measurable in time &amp;
+                            cost</span>
+                    </div>
+                </div>
+
+                <!-- Phase 3: Transfer -->
+                <div class="p-8 md:p-10 hover:bg-white/[0.02] transition-colors relative group">
+                    <div
+                        class="absolute top-0 left-0 w-full h-1 bg-white origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500">
+                    </div>
+                    <span class="text-xs font-mono text-white/60 mb-4 block">PHASE 03 // WEEK 12+</span>
+                    <h3 class="text-2xl font-serif italic text-white mb-4">Transfer</h3>
+                    <p class="text-neutral-400 text-[15px] mb-6 leading-relaxed">
+                        Full system handoff with documentation. Your team operates independently. We step back — with
+                        optional advisory if you want evolution support.
+                    </p>
+                    <div class="space-y-2.5 mb-6">
+                        <div class="flex items-center gap-2.5 text-white text-sm font-medium">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-white"></iconify-icon>
+                            <span>Full system handoff with documentation</span>
+                        </div>
+                        <div class="flex items-center gap-2.5 text-white text-sm font-medium">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-white"></iconify-icon>
+                            <span>Your team operates independently</span>
+                        </div>
+                        <div class="flex items-center gap-2.5 text-white text-sm font-medium">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-white"></iconify-icon>
+                            <span>Optional: advisory for evolution support</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2.5 pt-4 border-t border-white/5">
+                        <iconify-icon icon="solar:shield-check-linear" class="text-white/60 text-base"></iconify-icon>
+                        <span class="text-xs text-neutral-400">Complete ownership. Zero vendor lock-in.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flexible Timeline Note -->
+            <div class="mt-10 flex items-start gap-3 max-w-2xl">
+                <iconify-icon icon="solar:calendar-minimalistic-linear"
+                    class="text-neutral-300 text-lg mt-0.5 shrink-0"></iconify-icon>
+                <p class="text-sm text-neutral-400 leading-relaxed">
+                    <span class="text-neutral-200 font-medium">Flexible timeline.</span> Some clients transfer at Week
+                    12. Others prefer an extended Operate phase.<br class="hidden md:block">
+                    We adjust based on your team's readiness — not arbitrary deadlines.
+                </p>
+            </div>
+
+            <!-- Choose Your Engagement -->
+            <div class="mt-20">
+                <h3 class="text-center text-sm font-medium uppercase tracking-widest text-neutral-300 mb-3">Choose Your
+                    Engagement</h3>
+                <p class="text-center text-xs text-neutral-300 mb-10 max-w-md mx-auto">Every engagement starts the same.
+                    The difference is how long we stay.</p>
+                <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    <!-- Path 1: Jumpstart -->
+                    <a href="#contact"
+                        class="group block p-6 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-all text-center">
+                        <h4 class="group-hover:text-sky-300 transition-colors font-medium text-white mb-2">Jumpstart
+                        </h4>
+                        <p class="text-xs text-neutral-300">Full build + training. Your team takes over at Week 12.</p>
+                    </a>
+                    <!-- Path 2: Co-Pilot -->
+                    <a href="#contact"
+                        class="group block p-6 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-all text-center">
+                        <h4 class="text-white font-medium mb-2 group-hover:text-teal-400 transition-colors">Co-Pilot
+                        </h4>
+                        <p class="text-xs text-neutral-300">Extended operate phase through month 6. Includes AI-ready
+                            talent sourcing to fill gaps as your team evolves.
+                        </p>
+                    </a>
+                    <!-- Path 3: Fully Managed -->
+                    <a href="#contact"
+                        class="group block p-6 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-all text-center">
+                        <h4 class="text-white font-medium mb-2 group-hover:text-white transition-colors">Fully Managed
+                        </h4>
+                        <p class="text-xs text-neutral-300">We run the department as a service. Ongoing.</p>
+                    </a>
+                </div>
+
+                <!-- Scroll Indicator -->
+                <div class="flex justify-center animate-bounce opacity-80 mt-12">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 13l5 5 5-5M7 6l5 5 5-5"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STACKED CARDS SECTION -->
+    <section id="stacked-cards-section" class="stacked-cards-container">
+        <!-- Header -->
+        <div class="sticky top-0 h-[100vh] flex items-center justify-center z-0 pointer-events-none">
+            <div class="absolute inset-0 bg-neutral-950/80 z-0"></div> <!-- Dim background -->
+        </div>
+
+        <!-- Cards -->
+        <!-- Note: The HTML structure here is slightly different to accommodate the GSAP loop logic visually. 
+             We will create a long container that allows scrolling, and sticking cards. -->
+
+        <!-- WRAPPER FOR SCROLLING -->
+        <div id="cards-wrapper" class="relative z-10">
+            <div id="departments" class="absolute -top-20"></div>
+            <!-- Hero / Title Card -->
+            <div class="h-[100lvh] flex items-center justify-center sticky top-0 bg-neutral-950">
+                <div id="stacked-title-content" class="text-center z-10 px-4">
+                    <p class="text-xs font-mono text-emerald-400 mb-4 tracking-widest">EXOSYSTEM</p>
+                    <h2 class="text-4xl md:text-6xl font-light text-white tracking-tight mb-4">
+                        The Compounding <br>
+                        <span class="font-serif italic text-emerald-400">Capability Stack</span>
+                    </h2>
+                    <p class="text-neutral-400 text-lg max-w-xl mx-auto mb-8">Every engagement comes with Flow OS. The
+                        rest compounds based on what your operation needs.</p>
+                    <p class="text-neutral-500 animate-bounce mt-8">Scroll to Explore</p>
+                </div>
+
+                <!-- Background Grid Effect -->
+                <div class="absolute inset-0 z-0 opacity-20"
+                    style="background-image: linear-gradient(to right, rgba(79, 79, 79, 0.18) 1px, transparent 1px), linear-gradient(to bottom, rgba(79, 79, 79, 0.18) 1px, transparent 1px); background-size: 54px 54px; mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);">
+                </div>
+            </div>
+
+            <!-- Card 1: Exo Concierge Team -->
+            <div id="concierge" class="card-step h-[100lvh] sticky top-0 flex items-center justify-center">
+                <div class="card-content" style="--card-color: #fbbf24; z-index: 1;">
+                    <div class="exo-card-bg">
+                        <div class="exo-card-border-gradient"></div>
+
+                        <!-- Icon -->
+                        <div class="mb-8 relative">
+                            <div
+                                class="w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-400/20 to-transparent flex items-center justify-center border border-amber-400/20">
+                                <iconify-icon icon="solar:users-group-two-rounded-bold-duotone"
+                                    class="text-4xl text-amber-400"></iconify-icon>
+                            </div>
+                            <!-- Decorative background glow -->
+                            <div class="absolute -inset-4 bg-amber-400/20 blur-2xl rounded-full -z-10 opacity-50"></div>
+                        </div>
+
+                        <p class="font-semibold text-white tracking-[-0.02em] leading-tight text-[28px] pb-4">
+                            Exo Concierge Team
+                        </p>
+                        <p class="font-medium leading-relaxed text-white/50 text-base">
+                            Your dedicated operations team on standby. We don't wait for tickets — we monitor, optimize,
+                            and upgrade your system continuously so nothing falls through.
+                        </p>
+                        <p class="text-white font-bold text-sm mt-6 pt-4 border-t border-white/10">Always on. Always
+                            improving.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Flow OS -->
+            <div id="flow-os" class="card-step h-[100lvh] sticky top-0 flex items-center justify-center">
+                <div class="card-content" style="--card-color: #3b82f6; z-index: 2;">
+                    <div class="exo-card-bg">
+                        <div class="exo-card-border-gradient"></div>
+                        <div class="mb-8 relative">
+                            <div
+                                class="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500/20 to-transparent flex items-center justify-center border border-blue-500/20">
+                                <iconify-icon icon="solar:widget-bold-duotone"
+                                    class="text-4xl text-blue-500"></iconify-icon>
+                            </div>
+                            <div class="absolute -inset-4 bg-blue-500/20 blur-2xl rounded-full -z-10 opacity-50"></div>
+                        </div>
+                        <p class="font-semibold text-white tracking-[-0.02em] leading-tight text-[28px] pb-4">Flow OS
+                        </p>
+                        <p class="font-medium leading-relaxed text-white/50 text-base">
+                            Your unified operations layer. Every workflow, every decision, every handoff — captured in
+                            one system. The foundation everything else builds on.
+                        </p>
+                        <p class="text-white font-bold text-sm mt-6 pt-4 border-t border-white/10">One system. Every
+                            department.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Deal OS -->
+            <div id="deal-os" class="card-step h-[100lvh] sticky top-0 flex items-center justify-center">
+                <div class="card-content" style="--card-color: #10b981; z-index: 3;">
+                    <div class="exo-card-bg">
+                        <div class="exo-card-border-gradient"></div>
+                        <div class="mb-8 relative">
+                            <div
+                                class="w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-transparent flex items-center justify-center border border-emerald-500/20">
+                                <iconify-icon icon="solar:wallet-money-bold-duotone"
+                                    class="text-4xl text-emerald-500"></iconify-icon>
+                            </div>
+                            <div class="absolute -inset-4 bg-emerald-500/20 blur-2xl rounded-full -z-10 opacity-50">
+                            </div>
+                        </div>
+                        <p class="font-semibold text-white tracking-[-0.02em] leading-tight text-[28px] pb-4">Deal OS
+                        </p>
+                        <p class="font-medium leading-relaxed text-white/50 text-base">
+                            End-to-end revenue operations. Pipeline visibility, deal intelligence, and automated
+                            follow-ups — so nothing stalls between first call and closed-won.
+                        </p>
+                        <p class="text-white font-bold text-sm mt-6 pt-4 border-t border-white/10">Close faster. Lose
+                            nothing.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Exo Academy (EXA) -->
+            <div id="exa" class="card-step h-[100lvh] sticky top-0 flex items-center justify-center">
+                <div class="card-content" style="--card-color: #87CEEB; z-index: 4;">
+                    <div class="exo-card-bg">
+                        <div class="exo-card-border-gradient"></div>
+                        <div class="mb-8 relative">
+                            <div
+                                class="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-200/20 to-transparent flex items-center justify-center border border-violet-500/20">
+                                <iconify-icon icon="solar:book-bookmark-bold-duotone"
+                                    class="text-4xl text-sky-blue-300"></iconify-icon>
+                            </div>
+                            <div class="absolute -inset-4 bg-blue-200/20 blur-2xl rounded-full -z-10 opacity-50">
+                            </div>
+                        </div>
+                        <p class="font-semibold text-white tracking-[-0.02em] leading-tight text-[28px] pb-4">Exo
+                            Academy (EXA)</p>
+                        <p class="font-medium leading-relaxed text-white/50 text-base">
+                            Your team's permanent knowledge base. Structured training, live certifications, and
+                            documented SOPs — so onboarding takes days instead of months. The reason most clients never
+                            leave.
+                        </p>
+                        <p class="text-white font-bold text-sm mt-6 pt-4 border-t border-white/10">Knowledge that
+                            compounds.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: AURA AI -->
+            <div id="aura" class="card-step h-[100lvh] sticky top-0 flex items-center justify-center">
+                <div class="card-content" style="--card-color: #8b5cf6; z-index: 5;">
+                    <div class="exo-card-bg">
+                        <div class="exo-card-border-gradient"></div>
+                        <div class="mb-8 relative">
+                            <div
+                                class="w-20 h-20 rounded-2xl bg-gradient-to-br from-violet-500/20 to-transparent flex items-center justify-center border border-pink-500/20">
+                                <iconify-icon icon="solar:user-id-bold-duotone"
+                                    class="text-4xl text-violet-500"></iconify-icon>
+                            </div>
+                            <div class="absolute -inset-4 bg-violet-500/20 blur-2xl rounded-full -z-10 opacity-50">
+                            </div>
+                        </div>
+                        <p class="font-semibold text-white tracking-[-0.02em] leading-tight text-[28px] pb-4">AURA AI
+                        </p>
+                        <p class="font-medium leading-relaxed text-white/50 text-base">
+                            AI-powered talent intelligence. Scouts, screens, and ranks candidates before you post a
+                            single job listing. Find the right people faster — or let us white-label it for your
+                            clients.
+                        </p>
+                        <p class="text-white font-bold text-sm mt-6 pt-4 border-t border-white/10">Hire smarter. Scale
+                            faster.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6: Exo Launch -->
+            <div id="launch" class="card-step h-[100lvh] sticky top-0 flex items-center justify-center">
+                <div class="card-content" style="--card-color: #f97316; z-index: 6;">
+                    <div class="exo-card-bg">
+                        <div class="exo-card-border-gradient"></div>
+                        <div class="mb-8 relative">
+                            <div
+                                class="w-20 h-20 rounded-2xl bg-gradient-to-br from-orange-500/20 to-transparent flex items-center justify-center border border-orange-500/20">
+                                <iconify-icon icon="solar:rocket-bold-duotone"
+                                    class="text-4xl text-orange-500"></iconify-icon>
+                            </div>
+                            <div class="absolute -inset-4 bg-orange-500/20 blur-2xl rounded-full -z-10 opacity-50">
+                            </div>
+                        </div>
+                        <p class="font-semibold text-white tracking-[-0.02em] leading-tight text-[28px] pb-4">Exo Launch
+                        </p>
+                        <p class="font-medium leading-relaxed text-white/50 text-base">
+                            Marketing operations, installed. Ad variations, brand assets, and campaign strategies
+                            generated from your existing brand guidelines — not generic templates.
+                        </p>
+                        <p class="text-white font-bold text-sm mt-6 pt-4 border-t border-white/10">Your brand.
+                            Amplified.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7: Exo AI -->
+            <div id="exo-ai" class="card-step h-[100lvh] sticky top-0 flex items-center justify-center">
+                <div class="card-content" style="--card-color: #e5e5e5; z-index: 7;">
+                    <div class="exo-card-bg">
+                        <div class="exo-card-border-gradient"></div>
+                        <div class="mb-8 relative">
+                            <div
+                                class="w-20 h-20 rounded-2xl bg-gradient-to-br from-white/20 to-transparent flex items-center justify-center border border-white/20">
+                                <iconify-icon icon="solar:stars-minimalistic-bold-duotone"
+                                    class="text-4xl text-white"></iconify-icon>
+                            </div>
+                            <div class="absolute -inset-4 bg-white/20 blur-2xl rounded-full -z-10 opacity-50"></div>
+                        </div>
+                        <p class="font-semibold text-white tracking-[-0.02em] leading-tight text-[28px] pb-4">Exo AI</p>
+                        <p class="font-medium leading-relaxed text-white/50 text-base">
+                            Ask anything about your business and get an answer in seconds. Exo AI scans every workflow,
+                            document, and decision log across your operation — institutional memory that never forgets.
+                        </p>
+                        <p class="text-white font-bold text-sm mt-6 pt-4 border-t border-white/10">Your business.
+                            Instant answers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8: STEEL -->
+            <div class="card-step h-screen sticky top-0 flex items-center justify-center">
+                <div class="card-content" style="--card-color: #066304; z-index: 8;">
+                    <div class="exo-card-bg">
+                        <div class="exo-card-border-gradient"></div>
+                        <div class="mb-8 relative">
+                            <div
+                                class="w-20 h-20 rounded-2xl bg-gradient-to-br from-slate-400/20 to-transparent flex items-center justify-center border border-slate-400/20">
+                                <iconify-icon icon="solar:shield-bold-duotone"
+                                    class="text-4xl text-[#CBA135]"></iconify-icon>
+                            </div>
+                            <div class="absolute -inset-4 bg-slate-400/20 blur-2xl rounded-full -z-10 opacity-50"></div>
+                        </div>
+                        <p class="font-semibold text-white tracking-[-0.02em] leading-tight text-[28px] pb-4">STEEL</p>
+                        <p class="font-medium leading-relaxed text-white/50 text-base">
+                            Personal development for the people behind the operation. Leadership frameworks, peer
+                            networks, and growth tools — because building a better business starts with building better
+                            leaders. Included with every Exo engagement.
+                        </p>
+                        <div class="mt-6 pt-5 border-t border-white/10">
+                            <p class="font-medium leading-relaxed text-white/40 text-sm">
+                                After Transfer, you own the complete system — software, workflows, documentation,
+                                training materials. No subscriptions for core functionality.
+                            </p>
+                            <br>
+                            <br>
+                            <span class="text-white font-bold text-base">Along with much more +</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GSAP Script for Stacked Cards -->
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // FIX: Prevent mobile address bar from triggering resize refreshes
+            ScrollTrigger.config({ ignoreMobileResize: true });
+
+            // FIX: Custom Smooth Scroll for Anchor Links (since we removed scroll-smooth)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Use GSAP's scrollTo if available or native with behavior
+                        // We'll use a simple native fallback that respects the lack of scroll-smooth on global
+                        // but adds it here specifically.
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            const cards = gsap.utils.toArray(".card-step");
+            const totalCards = cards.length;
+
+            cards.forEach((card, i) => {
+                const cardContent = card.querySelector('.card-content');
+                // Calculate target scale:
+                // The last card (top of stack) stays at 1.
+                // The first card (bottom of stack) scales down the most.
+                const targetScale = 1 - ((totalCards - 1 - i) * 0.05);
+
+                ScrollTrigger.create({
+                    trigger: card,
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true,
+                    onUpdate: (self) => {
+                        const progress = self.progress;
+                        // Animate from 1 down to targetScale
+                        const currentScale = 1 - (progress * (1 - targetScale));
+                        gsap.set(cardContent, {
+                            scale: currentScale
+                        });
+                    }
+                });
+            });
+
+            // Title Fade-Out Animation
+            const titleContent = document.getElementById('stacked-title-content');
+            if (titleContent && cards.length > 0) {
+                ScrollTrigger.create({
+                    trigger: cards[0], // Trigger based on the first card
+                    start: "top bottom", // When top of first card hits bottom of viewport
+                    end: "top center",   // When top of first card hits center of viewport
+                    scrub: true,
+                    onUpdate: (self) => {
+                        gsap.set(titleContent, { opacity: 1 - self.progress });
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- PROOF / METRICS -->
+    <section class="py-20 border-t border-white/5 bg-neutral-950">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+            <div class="">
+                <div class="text-4xl font-light text-white mb-2">55<span class="text-sky-500 text-2xl">%</span></div>
+                <div class="text-xs uppercase tracking-widest text-neutral-500">Efficiency Gain</div>
+            </div>
+            <div class="">
+                <div class="text-4xl font-light text-white mb-2">90<span class="text-teal-500 text-2xl"> Days</span>
+                </div>
+                <div class="text-xs uppercase tracking-widest text-neutral-500">To Sovereignty</div>
+            </div>
+            <div class="">
+                <div class="text-4xl font-light text-white mb-2">0<span class="text-2xl text-neutral-500">
+                        Lock-In</span></div>
+                <div class="uppercase text-xs text-neutral-500 tracking-widest">You Own The Custom System</div>
+            </div>
+            <div class="">
+                <div class="text-4xl font-light text-white mb-2">24<span class="text-teal-500 text-2xl">/7</span></div>
+                <div class="text-xs uppercase tracking-widest text-neutral-500">Agent Uptime</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT CLIENTS SAY -->
+    <div
+        class="sm:px-6 lg:px-8 [animation:fadeSlideIn_0.8s_ease-out_0.1s_both] animate-on-scroll max-w-7xl mr-auto ml-auto pr-4 pl-4">
+        <div
+            class="overflow-hidden xl:bg-neutral-950/60 border border-white/20 border-dashed rounded-none mt-6 relative">
+            <!-- Background (Unicorn Studio) -->
+
+            <!-- Radial beams / grid overlay -->
+            <div class="pointer-events-none absolute inset-0">
+                <div
+                    class="absolute inset-0 opacity-70 [mask-image:radial-gradient(65%_65%_at_50%_50%,black,transparent)] bg-[radial-gradient(1200px_400px_at_50%_-10%,rgba(16,185,129,0.25),transparent),radial-gradient(1200px_600px_at_50%_120%,rgba(59,130,246,0.2),transparent)]">
+                </div>
+                <div
+                    class="absolute inset-0 opacity-[0.18] [mask-image:radial-gradient(80%_80%_at_50%_50%,black,transparent)] bg-[linear-gradient(to_right,rgba(255,255,255,.7)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.7)_1px,transparent_1px)] bg-[size:28px_28px]">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black"></div>
+            </div>
+
+            <!-- Floating utility icon -->
+            <div class="absolute left-5 top-5" style="visibility: hidden;">
+                <div
+                    class="flex h-9 w-9 items-center justify-center rounded-lg bg-sky-500/20 ring-1 ring-sky-400/30 backdrop-blur">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        data-lucide="refresh-cw" class="lucide lucide-refresh-cw h-5 w-5 text-sky-300">
+                        <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" class=""></path>
+                        <path d="M21 3v5h-5" class=""></path>
+                        <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" class=""></path>
+                        <path d="M8 16H3v5" class=""></path>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div
+                class="flex min-h-[68vh] flex-col sm:py-28 md:min-h-[76vh] md:pl-8 md:pr-8 md:pt-16 md:pb-8 text-left mr-auto ml-auto pt-16 pr-8 pb-8 pl-8 relative justify-center">
+                <!-- Section Header -->
+                <div
+                    class="[animation:fadeSlideIn_0.8s_ease-out_0.1s_both] animate-on-scroll text-left max-w-3xl mb-16">
+                    <div
+                        class="inline-flex text-[13px] font-medium text-emerald-300 rounded-none ring-0 mb-6 pt-1.5 pr-3.5 pb-1.5 pl-3.5 gap-x-2 gap-y-2 items-center">
+                        <span class="tabular-nums text-2xl font-light text-emerald-300/80">
+                            04
+                        </span>
+                        <span class="text-emerald-300/40">/</span>
+                        <span class="uppercase text-[11px] text-emerald-200/90 tracking-widest">
+                            TESTIMONIAL
+                        </span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-geist font-light tracking-tight text-white mb-4">
+                        What Operators Are Saying
+                    </h2>
+                    <p class="text-base sm:text-lg text-zinc-400 leading-relaxed">
+                        Real results from teams that stopped managing chaos and started running a system.
+                    </p>
+                </div>
+
+                <!-- Steps Grid -->
+                <div class="w-full">
+                    <!-- Top feature testimonial -->
+                    <div class="grid lg:grid-cols-2 lg:gap-y-8 lg:gap-x-6 gap-x-6 gap-y-8 items-stretch">
+                        <!-- Photo panel -->
+                        <div class="overflow-hidden min-h-[320px] [animation:fadeSlideIn_0.8s_ease-out_0.2s_both] animate-on-scroll bg-white/5 rounded-none ring-white/10 ring-1 relative"
+                            oncontextmenu="return false;">
+                            <img src="./assets/images/exo-feedback-6.jpeg" alt="Kevin Nishimura portrait" loading="lazy"
+                                class="img-protected opacity-100 w-full h-full object-cover" draggable="false">
+                            <!-- Transparent overlay to block click/save -->
+                            <div class="absolute inset-0 z-10"></div>
+                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/60 to-transparent mix-blend-multiply"
+                                style="visibility: hidden;"></div>
+                            <div class="absolute inset-0 opacity-40 bg-[linear-gradient(to_right,rgba(255,255,255,.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.18)_1px,transparent_1px)] bg-[size:10px_10px]"
+                                style="visibility: hidden;"></div>
+                            <div class="bg-gradient-to-b from-black/20 via-transparent to-black/60 absolute top-0 right-0 bottom-0 left-0"
+                                style="visibility: hidden;"></div>
+                        </div>
+
+                        <!-- Quote panel -->
+                        <div
+                            class="flex flex-col sm:p-10 sm:bg-neutral-950 [animation:fadeSlideIn_0.8s_ease-out_0.3s_both] animate-on-scroll text-left bg-black/40 rounded-none ring-white/10 ring-1 pt-8 pr-8 pb-8 pl-8 relative justify-center">
+                            <div class="mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-quote text-emerald-400">
+                                    <path d="M3 21c3 0 7-2 7-7V4H3v10" class=""></path>
+                                    <path d="M14 21c3 0 7-2 7-7V4h-7v10" class=""></path>
+                                </svg>
+                            </div>
+                            <p
+                                class="text-white font-geist tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-snug">
+                                "We saved on tooling costs and boosted conversions just by running
+                                Flow. The Exo team and the insights they surface are incredible."
+                            </p>
+                            <div class="mt-8">
+                                <div class="text-white text-base font-medium">
+                                    Kevin Nishimura
+                                </div>
+                                <div class="text-zinc-400 text-sm mt-1">Founder &amp; Creative Director, Milo Studio
+                                </div>
+                                <div class="text-zinc-400 text-sm mt-1 italic">"I've never learned tech this fast in my
+                                    life, it's fun to be honest — and they actually understand what it takes to scale a
+                                    business."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grid of small testimonials (Carousel) -->
+                    <div
+                        class="grid lg:grid-cols-3 [animation:fadeSlideIn_0.8s_ease-out_0.4s_both] animate-on-scroll mt-6 gap-x-6 gap-y-6">
+                        <style>
+                            @keyframes testimonialFadeOut {
+
+                                0%,
+                                44% {
+                                    opacity: 1;
+                                    visibility: visible;
+                                }
+
+                                50%,
+                                100% {
+                                    opacity: 0;
+                                    visibility: hidden;
+                                }
+                            }
+
+                            @keyframes testimonialFadeIn {
+
+                                0%,
+                                49% {
+                                    opacity: 0;
+                                    visibility: hidden;
+                                }
+
+                                55%,
+                                100% {
+                                    opacity: 1;
+                                    visibility: visible;
+                                }
+                            }
+
+                            .testi-fade-out-1 {
+                                animation: testimonialFadeOut 18s ease-in-out infinite;
+                            }
+
+                            .testi-fade-out-2 {
+                                animation: testimonialFadeOut 18s ease-in-out infinite;
+                            }
+
+                            .testi-fade-out-3 {
+                                animation: testimonialFadeOut 18s ease-in-out infinite;
+                            }
+
+                            .testi-fade-in-1 {
+                                animation: testimonialFadeIn 18s ease-in-out infinite;
+                            }
+
+                            .testi-fade-in-2 {
+                                animation: testimonialFadeIn 18s ease-in-out infinite;
+                            }
+
+                            .testi-fade-in-3 {
+                                animation: testimonialFadeIn 18s ease-in-out infinite;
+                            }
+                        </style>
+
+                        <!-- Column 1: Card 1 & 4 -->
+                        <div class="relative min-h-[240px]">
+                            <!-- Card 1 (original) -->
+                            <div
+                                class="testi-fade-out-1 flex flex-col xl:bg-neutral-950 text-left bg-white/5 rounded-none ring-white/10 ring-1 pt-6 pr-6 pb-6 pl-6 justify-between h-full">
+                                <p class="text-zinc-300 text-base leading-relaxed">
+                                    "We hit a ceiling trying to scale with the same headcount. Exo's workflows opened up
+                                    tons of hours a week across my team. We grew 40% this quarter without hiring new
+                                    staff."
+                                </p>
+                                <div class="flex items-center gap-3 mt-6">
+                                    <img src="./assets/images/Naveen-Client-Review.jpg" alt="Naveen Patel avatar"
+                                        loading="lazy"
+                                        class="h-8 w-8 rounded-none object-cover ring-1 ring-white/10 img-protected"
+                                        draggable="false">
+                                    <div>
+                                        <div class="text-white text-sm font-medium">Naveen Patel</div>
+                                        <div class="text-zinc-500 text-xs">VP of Engineering @ Northgate Technologies
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 4 (new) -->
+                            <div
+                                class="testi-fade-in-1 absolute inset-0 flex flex-col xl:bg-neutral-950 text-left bg-white/5 rounded-none ring-white/10 ring-1 pt-6 pr-6 pb-6 pl-6 justify-between">
+                                <p class="text-zinc-300 text-base leading-relaxed">
+                                    "Lean team, 13 people, $7M in revenue. Exo handles the work we used to outsource —
+                                    same output, a third of the cost. The concierge alone feels like having an AI
+                                    business partner. I'd recommend them to any company looking to scale."
+                                </p>
+                                <div class="flex items-center gap-3 mt-6">
+                                    <img src="./assets/images/exo-feedback-02.jpeg" alt="Cole Barrett avatar"
+                                        loading="lazy"
+                                        class="h-8 w-8 rounded-none object-cover ring-1 ring-white/10 img-protected"
+                                        draggable="false">
+                                    <div>
+                                        <div class="text-white text-sm font-medium">Cole Barrett</div>
+                                        <div class="text-zinc-500 text-xs">Head of Partnerships @ Benchmark Advisory
+                                            LTD.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Column 2: Card 2 & 5 -->
+                        <div class="relative min-h-[240px]">
+                            <!-- Card 2 (original) -->
+                            <div
+                                class="testi-fade-out-2 flex flex-col xl:bg-neutral-950 text-left bg-white/5 rounded-none ring-white/10 ring-1 pt-6 pr-6 pb-6 pl-6 justify-between h-full">
+                                <p class="leading-relaxed text-base text-zinc-300">
+                                    "We were running on gut feelings and whatever worked last quarter. Exo set up
+                                    tracking across every channel — now I see exactly where to put budget. Attribution
+                                    went from murky to surgical really quick."
+                                </p>
+                                <div class="flex gap-3 mt-6 items-center">
+                                    <img src="./assets/images/client-nate.jpg" alt="Grant Devereux avatar"
+                                        loading="lazy"
+                                        class="h-8 w-8 rounded-none object-cover ring-1 ring-white/10 img-protected"
+                                        draggable="false">
+                                    <div>
+                                        <div class="text-white text-sm font-medium">Grant Devereux</div>
+                                        <div class="text-zinc-500 text-xs">CMO @ Ironclad Analytics</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 5 (new) -->
+                            <div
+                                class="testi-fade-in-2 absolute inset-0 flex flex-col xl:bg-neutral-950 text-left bg-white/5 rounded-none ring-white/10 ring-1 pt-6 pr-6 pb-6 pl-6 justify-between">
+                                <p class="text-zinc-300 text-base leading-relaxed">
+                                    "We had great creative but no real system behind it. Exo's Launch gave us the
+                                    infrastructure to actually scale what was working. Pipeline is up, guesswork is way
+                                    down."
+                                </p>
+                                <div class="flex items-center gap-3 mt-6">
+                                    <img src="./assets/images/exo-feedback-12.jpg" alt="Andre Wolff avatar"
+                                        loading="lazy"
+                                        class="h-8 w-8 rounded-none object-cover ring-1 ring-white/10 img-protected"
+                                        draggable="false">
+                                    <div>
+                                        <div class="text-white text-sm font-medium">Andre Wolff</div>
+                                        <div class="text-zinc-500 text-xs">Partner @ Crescentwood Capital Group</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Column 3: Card 3 & 6 -->
+                        <div class="relative min-h-[240px]">
+                            <!-- Card 3 (original) -->
+                            <div
+                                class="testi-fade-out-3 flex flex-col xl:bg-neutral-950 text-left bg-white/5 rounded-none ring-white/10 ring-1 pt-6 pr-6 pb-6 pl-6 justify-between h-full">
+                                <p class="text-zinc-300 text-base leading-relaxed">
+                                    "I was spending 15 hours a week on things that shouldn't require me at all. Exo
+                                    taught me how to automate most of it. I finally have more free time to actually
+                                    think big and focus on the business."
+                                </p>
+                                <div class="flex items-center gap-3 mt-6">
+                                    <img src="./assets/images/exo-feedback-13.jpeg" alt="Vanessa Daley avatar"
+                                        loading="lazy"
+                                        class="h-8 w-8 rounded-none object-cover ring-1 ring-white/10 img-protected"
+                                        draggable="false">
+                                    <div>
+                                        <div class="text-white text-sm font-medium">Vanessa Daley</div>
+                                        <div class="text-zinc-500 text-xs">Owner @ Clicks Photography</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 6 (new) -->
+                            <div
+                                class="testi-fade-in-3 absolute inset-0 flex flex-col xl:bg-neutral-950 text-left bg-white/5 rounded-none ring-white/10 ring-1 pt-6 pr-6 pb-6 pl-6 justify-between">
+                                <p class="text-zinc-300 text-base leading-relaxed">
+                                    "This is my second company and I've never had this level of cross-department
+                                    visibility. Exo surfaces what I used to wait weeks for. Plus, EXA is upskilling my
+                                    team in AI ops — that's a cherry on top."
+                                </p>
+                                <div class="flex items-center gap-3 mt-6">
+                                    <img src="./assets/images/jenn-testimonial.jpeg" alt="Serena Velasco avatar"
+                                        loading="lazy"
+                                        class="h-8 w-8 rounded-none object-cover ring-1 ring-white/10 img-protected"
+                                        draggable="false">
+                                    <div>
+                                        <div class="text-white text-sm font-medium">Serena Velasco</div>
+                                        <div class="text-zinc-500 text-xs">CEO &amp; Founder @ Parable</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Secondary actions for small screens -->
+        <div class="flex md:hidden mt-4 items-center justify-between" style="display: none;">
+            <button class="rounded-xl bg-white/5 px-4 py-2 text-sm text-zinc-200 ring-1 ring-white/10">
+                Contact
+            </button>
+            <button class="rounded-xl bg-white px-4 py-2 text-sm text-black ring-1 ring-black/10">
+                Join waitlist
+            </button>
+        </div>
+    </div>
+
+    <!-- FINAL CTA -->
+    <section id="contact" class="py-32 relative overflow-hidden bg-neutral-950">
+        <!-- Decoration -->
+        <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-64 bg-indigo-600/20 blur-[100px] rounded-full pointer-events-none">
+        </div>
+
+        <div class="max-w-2xl mx-auto px-6 text-center relative z-10">
+            <h2 class="text-4xl md:text-5xl font-light text-white mb-6 tracking-tight">
+                Stop Managing Chaos.<br>Start Running a <span class="font-serif italic">System.</span>
+            </h2>
+            <p class="text-lg text-neutral-400 mb-10">
+                Book your 1-on-1 systems audit for free. We'll map your operations and show you exactly where Exo saves
+                you time, money, and headcount.
+            </p>
+
+            <form id="lead-form" class="max-w-md mr-auto ml-auto space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="text" id="first-name" placeholder="First Name" required
+                        class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-neutral-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-sm">
+                    <input type="text" id="last-name" placeholder="Last Name" required
+                        class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-neutral-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-sm">
+                </div>
+                <input type="email" id="work-email" placeholder="Work Email" required
+                    class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-neutral-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-sm">
+
+                <button type="submit" id="lead-submit-btn"
+                    class="hover:bg-neutral-200 transition-colors flex gap-2 font-semibold text-black bg-white w-full rounded-lg pt-4 pr-4 pb-4 pl-4 gap-x-2 gap-y-2 items-center justify-center">
+                    <span id="btn-text">Book Risk Free</span>
+                    <iconify-icon icon="solar:arrow-right-linear" class=""></iconify-icon>
+                </button>
+                <p class="text-xs text-neutral-500 mt-4 mb-0">8 Teams Per Month. | No commitment required. | 100%
+                    Confidential.</p>
+                <p class="text-xs text-neutral-500 mt-0 mb-0">© Steel Security Protocol always active</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-neutral-800/50 bg-neutral-900/30">
+        <div class="sm:px-6 lg:px-8 max-w-7xl mr-auto ml-auto pt-14 pr-4 pb-14 pl-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 lg:grid-cols-4 gap-x-12 gap-y-12">
+                <!-- Brand Logo Section -->
+                <div class="flex flex-col items-center justify-center">
+                    <button id="footer-logo-btn"
+                        class="w-full bg-white/5 border border-white/10 rounded-lg p-8 backdrop-blur-xl flex items-center justify-center hover:bg-white/[0.07] transition-colors duration-300 cursor-pointer"
+                        style="aspect-ratio: 1; background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);">
+                        <img src="./logos/LOGO%20MARK.png" alt="Exo Enterprise Logo" loading="lazy"
+                            class="w-[80%] h-[80%] object-contain"
+                            style="filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));">
+                    </button>
+                    <p class="text-xs text-black font-geist mt-4 text-center">Exo Enterprise</p>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h4 class="uppercase text-sm font-normal text-emerald-300 tracking-widest font-geist mb-4">
+                        Company
+                    </h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="/firm.html"
+                                class="text-sm text-neutral-300 hover:text-white transition-colors font-geist font-normal">
+                                About
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/careers.html"
+                                class="text-sm text-neutral-300 hover:text-white transition-colors font-geist font-normal">
+                                Careers
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/steel.html"
+                                class="text-sm text-neutral-300 hover:text-white transition-colors font-geist font-normal">
+                                STEEL
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:exo.corpmail@gmail.com"
+                                class="text-sm text-neutral-300 hover:text-white transition-colors font-geist font-normal">
+                                Support
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/x-scale.html"
+                                class="text-sm text-neutral-300 hover:text-white transition-colors font-geist font-normal">
+                                Consult | Enterprise
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Products -->
+                <div>
+                    <h4 class="uppercase text-sm font-normal text-emerald-300 tracking-widest font-geist mb-4">
+                        Solutions
+                    </h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="/flow.html"
+                                class="text-sm text-neutral-300 hover:text-white transition-colors font-geist font-normal">
+                                Flow OS
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#departments"
+                                class="text-sm text-neutral-300 hover:text-white transition-colors font-geist font-normal">
+                                Deal OS
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#departments"
+                                class="text-sm text-neutral-300 hover:text-white transition-colors font-geist font-normal">
+                                Launch
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#departments"
+                                class="text-sm text-neutral-300 hover:text-white transition-colors font-geist font-normal">
+                                EXA AI
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#departments"
+                                class="text-sm text-neutral-300 hover:text-white transition-colors font-geist font-normal">
+                                AURA
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#departments"
+                                class="text-sm text-neutral-300 hover:text-white transition-colors font-geist font-normal">
+                                Exo AI
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="text-xs font-normal text-neutral-400 font-geist border-white/10 border-t mt-10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>© 2026 Exo Enterprise. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="module">
+        import { client } from "./js/convex-client.js";
+
+        const leadForm = document.getElementById('lead-form');
+        const submitBtn = document.getElementById('lead-submit-btn');
+        const btnText = document.getElementById('btn-text');
+
+        if (leadForm) {
+            leadForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const firstName = document.getElementById('first-name').value;
+                const lastName = document.getElementById('last-name').value;
+                const email = document.getElementById('work-email').value;
+
+                // UI Loading State
+                submitBtn.disabled = true;
+                btnText.innerText = "Securing Audit...";
+                submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+
+                try {
+                    // 1. Submit to Convex
+                    await client.mutation("leads:submitLead", {
+                        firstName,
+                        lastName,
+                        email
+                    });
+
+                    // 2. Sync to Mailchimp (B2B audience)
+                    client.action("mailchimp:addSubscriber", {
+                        email,
+                        firstName,
+                        lastName,
+                        brandType: "exo_b2b"
+                    }).catch(err => console.error("Mailchimp sync error:", err));
+
+                    // 3. Save to Session for the next page
+                    const leadData = { firstName, lastName, email };
+                    sessionStorage.setItem('exo_lead_data', JSON.stringify(leadData));
+
+                    // 4. Redirect to X-Scale page
+                    window.location.href = "x-scale.html";
+
+                } catch (error) {
+                    console.error("Submission failed:", error);
+                    alert("Submission failed. Please check your connection and try again.");
+
+                    // Reset UI
+                    submitBtn.disabled = false;
+                    btnText.innerText = "Book Risk Free";
+                    submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+                }
+            });
+        }
+    </script>
+
+    <!-- Image Protection: Block right-click on testimonial images -->
+    <script>
+        document.querySelectorAll('.img-protected').forEach(img => {
+            img.addEventListener('contextmenu', e => e.preventDefault());
+            img.addEventListener('dragstart', e => e.preventDefault());
+        });
+    </script>
+
+    <!-- PostHog Event Tracking -->
+    <script>
+        // Track hero CTA click
+        const heroCTABtn = document.getElementById('hero-cta-btn');
+        if (heroCTABtn) {
+            heroCTABtn.addEventListener('click', () => {
+                posthog.capture('cta_clicked', {
+                    page: 'home',
+                    placement: 'hero',
+                    cta_text: 'SCALE YOUR BUSINESS'
+                });
+            });
+        }
+    </script>
+
+    <!-- Spline Loader Fade-Out -->
+    <script>
+        (function () {
+            const splineIframe = document.getElementById('spline-iframe');
+            const loader = document.getElementById('spline-loader');
+
+            if (splineIframe && loader) {
+                splineIframe.addEventListener('load', function () {
+                    loader.style.opacity = '0';
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                    }, 1000);
+                });
+
+                // Fallback: Hide loader after 8 seconds regardless
+                setTimeout(() => {
+                    if (loader.style.display !== 'none') {
+                        loader.style.opacity = '0';
+                        setTimeout(() => loader.style.display = 'none', 1000);
+                    }
+                }, 8000);
+            }
+        })();
+    </script>
+
+    <!-- Mobile Menu Toggle & Footer Logo Scroll -->
+    <script>
+        (function () {
+            const menuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const footerLogoBtn = document.getElementById('footer-logo-btn');
+            let isMenuOpen = false;
+
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    isMenuOpen = !isMenuOpen;
+                    if (isMenuOpen) {
+                        mobileMenu.classList.remove('hidden');
+                        menuIcon.setAttribute('icon', 'solar:close-circle-linear');
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                        menuIcon.setAttribute('icon', 'solar:hamburger-menu-linear');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+
+                // Close Button Logic
+                const closeBtn = document.getElementById('mobile-menu-close');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', () => {
+                        isMenuOpen = false;
+                        mobileMenu.classList.add('hidden');
+                        menuIcon.setAttribute('icon', 'solar:hamburger-menu-linear');
+                        document.body.style.overflow = 'auto';
+                    });
+                }
+
+                const menuLinks = mobileMenu.querySelectorAll('a');
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        isMenuOpen = false;
+                        mobileMenu.classList.add('hidden');
+                        menuIcon.setAttribute('icon', 'solar:hamburger-menu-linear');
+                        document.body.style.overflow = 'auto';
+                    });
+                });
+            }
+
+            if (footerLogoBtn) {
+                footerLogoBtn.addEventListener('click', () => {
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+        })();
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const departments = [
+                { name: 'Sales', class: 'text-emerald-400' },
+                { name: 'Marketing', class: 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-transparent bg-clip-text' },
+                { name: 'Customer Success', class: 'text-sky-400' },
+                { name: 'Operations', class: 'text-blue-500' },
+                { name: 'I.T.', class: 'text-slate-300' },
+                { name: 'Finance', class: 'text-emerald-900' },
+                { name: 'Legal', class: 'text-blue-900' },
+                { name: 'Hiring', class: 'text-purple-400' },
+                { name: 'Whole', class: 'text-white' }
+            ];
+
+            let currentIndex = 0;
+            const textElement = document.getElementById('hero-department-text');
+
+            if (textElement) {
+                // Add CSS transition for transform and opacity
+                textElement.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+
+                setInterval(() => {
+                    // Fade out
+                    textElement.style.opacity = '0';
+                    textElement.style.transform = 'translateY(10px)';
+
+                    setTimeout(() => {
+                        currentIndex = (currentIndex + 1) % departments.length;
+                        const dept = departments[currentIndex];
+
+                        // Update text and class
+                        textElement.textContent = dept.name;
+                        // Reset classes first to avoid conflicts, then add base classes and specific dynamic classes
+                        textElement.className = `font-medium inline-block pb-1 transition-all duration-500 ${dept.class}`;
+
+                        // Fade in (using requestAnimationFrame to ensure style application)
+                        requestAnimationFrame(() => {
+                            textElement.style.opacity = '1';
+                            textElement.style.transform = 'translateY(0)';
+                        });
+                    }, 500); // Wait for fade out
+                }, 3000); // 3 second interval
+            }
+
+            // Spotlight Card Logic
+            const spotlightCards = document.querySelectorAll('.card-spotlight');
+            spotlightCards.forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                    card.style.setProperty('--spotlight-color', 'rgba(0, 229, 255, 0.2)');
+                });
+            });
+        });
+    </script>
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner"
+        class="fixed bottom-0 left-0 right-0 z-[100] bg-black border-t border-white/10 text-white px-6 py-4 transform translate-y-full transition-transform duration-500 ease-out flex flex-col sm:flex-row items-center justify-between gap-4 shadow-2xl">
+        <p class="text-xs sm:text-sm text-neutral-300 font-geist text-center sm:text-left max-w-4xl">
+            Exo uses cookies to maintain user sessions and track marketing efforts. By continuing to use our website,
+            you agree to our use of cookies for these purposes.
+            <a href="privacy.html" class="text-white underline hover:no-underline transition-colors">Read our Privacy
+                Policy</a>
+        </p>
+        <button id="close-cookie-banner" aria-label="Close cookie banner"
+            class="text-white hover:text-neutral-400 transition-colors p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        (function () {
+            const banner = document.getElementById('cookie-banner');
+            const closeBtn = document.getElementById('close-cookie-banner');
+            const consentKey = 'exo-cookie-consent-dismissed';
+
+            if (!localStorage.getItem(consentKey)) {
+                // Delay appearance for "pop up" effect
+                setTimeout(() => {
+                    banner.classList.remove('translate-y-full');
+                }, 1000);
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    banner.classList.add('translate-y-full');
+                    localStorage.setItem(consentKey, 'true');
+                });
+            }
+        })();
+    </script>
+</body>
+
+</html>
