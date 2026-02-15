@@ -255,8 +255,8 @@ function ResourceCard({
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${isElite
-              ? 'bg-violet-500/20 text-violet-400'
-              : 'bg-white/5 text-emerald-400'
+            ? 'bg-violet-500/20 text-violet-400'
+            : 'bg-white/5 text-emerald-400'
             }`}>
             <iconify-icon icon={resource.icon} width="24"></iconify-icon>
           </div>
@@ -496,10 +496,10 @@ function VaultContent() {
               </div>
             )}
             <a
-              href="#"
+              href="https://exoent.co/"
               className="hidden sm:flex items-center gap-2 text-xs font-medium text-neutral-400 hover:text-white transition-colors"
             >
-              Main Site
+              Home
               <iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon>
             </a>
           </div>
@@ -569,8 +569,8 @@ function VaultContent() {
                       key={cat.id}
                       onClick={() => setActiveCategory(cat.id)}
                       className={`px-4 py-2.5 rounded-xl text-xs font-medium uppercase tracking-wider transition-all flex items-center gap-2 ${activeCategory === cat.id
-                          ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                          : 'bg-white/5 text-neutral-400 border border-white/10 hover:bg-white/10 hover:text-white'
+                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                        : 'bg-white/5 text-neutral-400 border border-white/10 hover:bg-white/10 hover:text-white'
                         }`}
                     >
                       <iconify-icon icon={cat.icon} width="14"></iconify-icon>
@@ -691,9 +691,9 @@ function VaultContent() {
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p>&copy; 2026 Exo Enterprise LLC. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="mailto:support@exoenterprise.com" className="hover:text-emerald-400 transition-colors flex items-center gap-1">
+            <a href="https://exoent.co/terms" className="hover:text-white transition-colors">Terms of Service</a>
+            <a href="https://exoent.co/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="mailto:exo.corpmail@gmail.com" className="hover:text-emerald-400 transition-colors flex items-center gap-1">
               <iconify-icon icon="solar:chat-round-dots-linear" width="14"></iconify-icon>
               Need Help?
             </a>
