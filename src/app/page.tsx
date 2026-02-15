@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { VaultGate } from '@/components/VaultGate'
 
 // Resource data types
 interface Resource {
@@ -158,10 +159,10 @@ const categories = [
 ]
 
 // Resource Card Component
-function ResourceCard({ 
-  resource, 
-  onEliteClick 
-}: { 
+function ResourceCard({
+  resource,
+  onEliteClick
+}: {
   resource: Resource
   onEliteClick: (resource: Resource) => void
 }) {
@@ -235,7 +236,7 @@ function ResourceCard({
       onClick={handleClick}
     >
       {/* Spotlight Effect */}
-      <div 
+      <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
         style={{
           background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(255,255,255,0.05), transparent 80%)`
@@ -253,11 +254,10 @@ function ResourceCard({
       <div className={`relative z-20 p-6 ${isElite ? 'opacity-80' : ''}`}>
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
-          <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-            isElite 
-              ? 'bg-violet-500/20 text-violet-400' 
+          <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${isElite
+              ? 'bg-violet-500/20 text-violet-400'
               : 'bg-white/5 text-emerald-400'
-          }`}>
+            }`}>
             <iconify-icon icon={resource.icon} width="24"></iconify-icon>
           </div>
           {getTierBadge()}
@@ -276,7 +276,7 @@ function ResourceCard({
           <span className="text-xs text-neutral-500 uppercase tracking-wider">
             {resource.type}
           </span>
-          
+
           {isElite ? (
             <div className="flex items-center gap-2 text-violet-400">
               <iconify-icon icon="solar:shield-keyhole-bold-duotone" width="20"></iconify-icon>
@@ -287,8 +287,8 @@ function ResourceCard({
               <span className="text-xs font-medium">
                 {isPublic ? 'Download' : 'Access'}
               </span>
-              <iconify-icon 
-                icon="solar:arrow-right-linear" 
+              <iconify-icon
+                icon="solar:arrow-right-linear"
                 width="16"
                 className="transform group-hover:translate-x-1 transition-transform"
               ></iconify-icon>
@@ -310,11 +310,11 @@ function ResourceCard({
 }
 
 // Elite Gateway Modal Component
-function EliteModal({ 
-  isOpen, 
-  onClose, 
-  resource 
-}: { 
+function EliteModal({
+  isOpen,
+  onClose,
+  resource
+}: {
   isOpen: boolean
   onClose: () => void
   resource: Resource | null
@@ -322,20 +322,20 @@ function EliteModal({
   if (!isOpen || !resource) return null
 
   return (
-    <div 
+    <div
       className="fixed inset-0 z-[100] flex items-center justify-center p-4"
       onClick={onClose}
     >
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/80 modal-backdrop" />
-      
+
       {/* Modal Content */}
-      <div 
+      <div
         className="relative z-10 w-full max-w-lg glass-panel rounded-3xl p-8 animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
-        <button 
+        <button
           onClick={onClose}
           className="absolute top-4 right-4 text-neutral-400 hover:text-white transition-colors"
         >
@@ -395,7 +395,7 @@ function EliteModal({
   )
 }
 
-// Main Content Component (needs useSearchParams)
+// Main Content Component
 function VaultContent() {
   const searchParams = useSearchParams()
   const [searchQuery, setSearchQuery] = useState('')
@@ -404,9 +404,37 @@ function VaultContent() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
 
-  // Derive user name from URL params directly (no useState needed)
-  const userParam = searchParams.get('user')
-  const userName = userParam ? decodeURIComponent(userParam) : null
+  // Gate State
+  const [isGateOpen, setIsGateOpen] = useState(false);
+  const userParam = searchParams.get('user');
+  const [userName, setUserName] = useState<string | null>(null);
+
+  // Logic to determine if gate should be open
+  useEffect(() => {
+    // 1. If explicit ?user=Name available, allow access
+    if (userParam) {
+      setUserName(decodeURIComponent(userParam));
+      setIsGateOpen(true);
+      return;
+    }
+
+    // 2. Check LocalStorage (if they signed up previously on this device)
+    const storedUser = localStorage.getItem('exo_vault_user');
+    if (storedUser) {
+      setUserName(storedUser);
+      setIsGateOpen(true);
+    }
+
+    // Otherwise, keep gate closed
+  }, [userParam]);
+
+  const handleGateUnlock = (name: string) => {
+    setUserName(name);
+    setIsGateOpen(true);
+    // Persist to LocalStorage so they don't have to sign in every reload
+    localStorage.setItem('exo_vault_user', name);
+  };
+
 
   // Handle entrance animation
   useEffect(() => {
@@ -417,7 +445,7 @@ function VaultContent() {
   // Filter resources
   const filteredResources = resources.filter(resource => {
     const matchesSearch = resource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         resource.description.toLowerCase().includes(searchQuery.toLowerCase())
+      resource.description.toLowerCase().includes(searchQuery.toLowerCase())
     const matchesCategory = activeCategory === 'all' || resource.category === activeCategory
     return matchesSearch && matchesCategory
   })
@@ -439,6 +467,11 @@ function VaultContent() {
 
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-200 antialiased">
+      {/* Soft Gate */}
+      {!isGateOpen && (
+        <VaultGate onUnlock={handleGateUnlock} />
+      )}
+
       {/* Background Decoration */}
       <div className="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900 via-neutral-950 to-neutral-950" />
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none -z-10" />
@@ -449,7 +482,8 @@ function VaultContent() {
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2 group">
             <div className="w-8 h-8 rounded border border-white/20 flex items-center justify-center bg-white/5 group-hover:bg-white/10 transition-colors overflow-hidden">
-              <iconify-icon icon="solar:box-minimalistic-bold" width="18" className="text-emerald-400"></iconify-icon>
+              {/* Nav Logo */}
+              <img src="/favicon.png" alt="Exo" className="w-full h-full object-contain" />
             </div>
             <span className="text-md font-medium tracking-tight text-white/90">Exo Vault</span>
           </a>
@@ -461,7 +495,7 @@ function VaultContent() {
                 <span>{userName}</span>
               </div>
             )}
-            <a 
+            <a
               href="#"
               className="hidden sm:flex items-center gap-2 text-xs font-medium text-neutral-400 hover:text-white transition-colors"
             >
@@ -475,7 +509,7 @@ function VaultContent() {
       {/* Main Content */}
       <main className="relative z-10 py-12 px-6">
         <div className="max-w-7xl mx-auto">
-          
+
           {/* Hero Header */}
           <div className={`text-center mb-12 transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             {/* Status Badge */}
@@ -514,9 +548,9 @@ function VaultContent() {
               <div className="flex flex-col md:flex-row gap-4">
                 {/* Search Input */}
                 <div className="relative flex-1">
-                  <iconify-icon 
-                    icon="solar:magnifer-linear" 
-                    width="20" 
+                  <iconify-icon
+                    icon="solar:magnifer-linear"
+                    width="20"
                     className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500"
                   ></iconify-icon>
                   <input
@@ -534,11 +568,10 @@ function VaultContent() {
                     <button
                       key={cat.id}
                       onClick={() => setActiveCategory(cat.id)}
-                      className={`px-4 py-2.5 rounded-xl text-xs font-medium uppercase tracking-wider transition-all flex items-center gap-2 ${
-                        activeCategory === cat.id
+                      className={`px-4 py-2.5 rounded-xl text-xs font-medium uppercase tracking-wider transition-all flex items-center gap-2 ${activeCategory === cat.id
                           ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
                           : 'bg-white/5 text-neutral-400 border border-white/10 hover:bg-white/10 hover:text-white'
-                      }`}
+                        }`}
                     >
                       <iconify-icon icon={cat.icon} width="14"></iconify-icon>
                       <span className="hidden sm:inline">{cat.label}</span>
@@ -551,7 +584,7 @@ function VaultContent() {
 
           {/* Resources Grid */}
           <div className="space-y-12">
-            
+
             {/* Public Floor Section */}
             {publicResources.length > 0 && (
               <section className={`transition-all duration-700 delay-200 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -564,9 +597,9 @@ function VaultContent() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {publicResources.map((resource) => (
-                    <ResourceCard 
-                      key={resource.id} 
-                      resource={resource} 
+                    <ResourceCard
+                      key={resource.id}
+                      resource={resource}
                       onEliteClick={handleEliteClick}
                     />
                   ))}
@@ -586,9 +619,9 @@ function VaultContent() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {vaultResources.map((resource) => (
-                    <ResourceCard 
-                      key={resource.id} 
-                      resource={resource} 
+                    <ResourceCard
+                      key={resource.id}
+                      resource={resource}
                       onEliteClick={handleEliteClick}
                     />
                   ))}
@@ -608,9 +641,9 @@ function VaultContent() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {eliteResources.map((resource) => (
-                    <ResourceCard 
-                      key={resource.id} 
-                      resource={resource} 
+                    <ResourceCard
+                      key={resource.id}
+                      resource={resource}
                       onEliteClick={handleEliteClick}
                     />
                   ))}
@@ -669,10 +702,10 @@ function VaultContent() {
       </footer>
 
       {/* Elite Gateway Modal */}
-      <EliteModal 
-        isOpen={isModalOpen} 
-        onClose={closeModal} 
-        resource={selectedResource} 
+      <EliteModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        resource={selectedResource}
       />
     </div>
   )
