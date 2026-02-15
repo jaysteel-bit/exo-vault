@@ -488,19 +488,24 @@ function VaultContent() {
             <span className="text-md font-medium tracking-tight text-white/90">Exo Vault</span>
           </a>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-6">
             {userName && (
-              <div className="flex items-center gap-2 text-sm text-neutral-400">
+              <div className="hidden md:flex items-center gap-2 text-sm text-neutral-400">
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                <span>{userName}</span>
+                <span className="max-w-[150px] truncate">{userName}</span>
               </div>
             )}
             <a
               href="https://exoent.co/"
-              className="hidden sm:flex items-center gap-2 text-xs font-medium text-neutral-400 hover:text-white transition-colors"
+              className="text-xs font-medium text-neutral-400 hover:text-white transition-colors"
             >
               Home
-              <iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon>
+            </a>
+            <a
+              href="https://exoent.co/#contact"
+              className="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-white text-xs font-bold rounded-lg transition-all shadow-[0_0_15px_-3px_rgba(16,185,129,0.3)] hover:shadow-[0_0_20px_-3px_rgba(16,185,129,0.5)] whitespace-nowrap"
+            >
+              Get Started
             </a>
           </div>
         </div>
