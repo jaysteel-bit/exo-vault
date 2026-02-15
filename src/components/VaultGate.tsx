@@ -36,8 +36,7 @@ export function VaultGate({ onUnlock }: VaultGateProps) {
                 firstName,
                 lastName,
                 email: formData.email,
-                company: formData.company,
-                source: "vault_gate"
+                company: formData.company
             });
 
             // Unlock
